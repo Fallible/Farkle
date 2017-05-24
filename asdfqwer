@@ -1,0 +1,33 @@
+using System.Collections;
+using System.Collections.Generic;
+using static System.Console;
+
+namespace GeneratorExample
+{
+    class Program
+    {
+        static IEnumerable<string> Generator(string prefix)
+        {
+            yield return prefix + "A1"; // good place for a breakpoint
+            yield return prefix + "A2";
+            yield return prefix + "B1";
+            yield return prefix + "B2";
+        }
+
+        class Hashtags : IEnumerable<string>
+        {
+            public IEnumerator<string> GetEnumerator() => Generator("#").GetEnumerator();
+
+            IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+        }
+
+        static void Main()
+        {
+            var collection = new Hashtags();
+            foreach (var tag in collection)
+            {
+                WriteLine(tag); // good place for a breakpoint
+            }
+        }
+    }
+} 

@@ -19,22 +19,29 @@ def is_straight(x):
     if sorted(x.values()) == [1, 2, 3, 4, 5, 6]:
         return 1500
 
-
+'''
+# Commenting this function out.  I don't think 6 of a kind is special
+# outside of normal procedural rules.
 def is_six_of_kind(x):
     for i in range(6):
         if sorted(x.values()) == [i, i, i, i, i, i]:
-            return True
+            return i * 100 * 
+'''
 
 
 def is_three_pair(x):
     result_list = [0] * 6
+    three_pair = [0, 0, 0, 2, 2, 2]
     for i in list(x.values()):
         result_list[(list(x.values())[i]) - 1] += 1
     if result_list.__contains__(6):
-        return True
-    if result_list.__contains__(4) && result_list.__contains__(2):
-        return True
-    print(result_list)
+        return 1500
+    if result_list.__contains__(4) and result_list.__contains__(2):
+        return 1500
+    if sorted(result_list) == three_pair:
+        return 1500
+    else:
+        return -1
 
 
 """
@@ -63,8 +70,8 @@ goat = {1: 1, 2: 1, 3: 1, 4: 1, 5: 1, 6: 1}
 
 yAak = {1: 1, 2: 1, 3: 2, 4: 3, 5: 2, 6: 3}
 
-if is_three_pair(yAak):
-    print("Three Pair Confirmed")
+print(is_three_pair(yAak))
+
 
 print(type(list(yAak.values())) is list)
 # if(is_three_pair(yAak)):

@@ -15,18 +15,9 @@ def roll_x_dice(x):
 
 # Build out my combo definitions
 # Return value of combo.
-def is_straight(x):
+def is_straight(x, y):
     if sorted(x.values()) == [1, 2, 3, 4, 5, 6]:
-        return 1500
-
-'''
-# Commenting this function out.  I don't think 6 of a kind is special
-# outside of normal procedural rules.
-def is_six_of_kind(x):
-    for i in range(6):
-        if sorted(x.values()) == [i, i, i, i, i, i]:
-            return i * 100 * 
-'''
+        return null, 1500 + y
 
 
 def is_three_pair(x):
@@ -44,6 +35,17 @@ def is_three_pair(x):
         return -1
 
 
+def is_ace(x)
+
+
+'''
+# Commenting this function out.  I don't think 6 of a kind is special
+# outside of normal procedural rules.
+def is_six_of_kind(x):
+    for i in range(6):
+        if sorted(x.values()) == [i, i, i, i, i, i]:
+            return i * 100 * 
+'''
 """
 for num in range(10000):
     qq = rollXDice(6)

@@ -2,30 +2,31 @@ import random
 import collections
 
 
-def randRoll():
+def rand_roll():
     return random.randrange(1, 6)
 
 
-def rollXDice(x):
+def roll_x_dice(x):
     die_dict = {}
     for y in range(x):
-        die_dict[y] = randRoll()
+        die_dict[y] = rand_roll()
     return die_dict
 
 
 # Build out my combo definitions
-def isStraight(x):
+# Return value of combo.
+def is_straight(x):
     if sorted(x.values()) == [1, 2, 3, 4, 5, 6]:
-        return True
+        return 1500
 
 
-def isSixOfAKind(x):
+def is_six_of_kind(x):
     for i in range(6):
         if sorted(x.values()) == [i, i, i, i, i, i]:
             return True
 
 
-def isThreePair(x):
+def is_three_pair(x):
     result_list = [0] * 6
     for i in list(x.values()):
         result_list[(list(x.values())[i]) - 1] += 1
@@ -39,13 +40,13 @@ def isThreePair(x):
 """
 for num in range(10000):
     qq = rollXDice(6)
-    if(isStraight(qq)):
+    if(is_straight(qq)):
         print("got here")
 #        break
-    if(isSixOfAKind(qq)):
+    if(is_six_of_kind(qq)):
         print("and here")
 #        break
-    if(isThreePair(qq)):
+    if(is_three_pair(qq)):
         print("Confirmed.  Three Pair.")
 
 """
@@ -53,18 +54,18 @@ for num in range(10000):
 # Testing below.  Build a dict, then use it.
 
 goofball = {1: 1, 2: 3, 3: 2, 4: 4, 5: 5, 6: 6}
-# if(isStraight(goofball)):
+# if(is_straight(goofball)):
 #    print("provided")
 
 goat = {1: 1, 2: 1, 3: 1, 4: 1, 5: 1, 6: 1}
-# if(isSixOfAKind(goat)):
+# if(is_six_of_kind(goat)):
 #    print("got to goat")
 
 yAak = {1: 1, 2: 1, 3: 2, 4: 3, 5: 2, 6: 3}
 
-if isThreePair(yAak):
+if is_three_pair(yAak):
     print("Three Pair Confirmed")
 
 print(type(list(yAak.values())) is list)
-# if(isThreePair(yAak)):
+# if(is_three_pair(yAak)):
 #    print("Is Three Pair")

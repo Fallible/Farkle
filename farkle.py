@@ -12,31 +12,33 @@ def roll_x_dice(x):
         die_dict[y] = rand_roll()
     return die_dict
 
-def check_combos(score, die_list):
-    if die_list == [0, 0, 0, 0, 0, 0]:
+def check_combos(score, die_dict):
+    if list(die_dict.values()) == [0, 0, 0, 0, 0, 0]:
         return score
-    is_straight(score, die_list)
-    is_three_pair(score, die_list)
-    is_ace(score, die_list)
-    is_five(score, die_list)
+    is_straight(score, die_dict)
+    is_three_pair(score, die_dict)
+    is_ace(score, die_dict)
+    is_five(score, die_dict)
+    #is_no_score()
 
 
-def list_index(die_list, index):
-    ret_list = die_list
+def list_index(die_dict, index):
+    ret_list = die_dict
+    #TODO: Figure out how to set dictionary value
     ret_list[index] = 0
     return ret_list
 
 
 # Build out my combo definitions
 # Return value of combo.
-def is_straight(score, die_list):
-    if sorted(die_list.values()) == [1, 2, 3, 4, 5, 6]:
+def is_straight(score, die_dict):
+    if sorted(die_dict.values()) == [1, 2, 3, 4, 5, 6]:
         return 1500 + score, [0, 0, 0, 0, 0, 0]
 
 
-def is_three_pair(score, die_list):
+def is_three_pair(score, die_dict):
     three_pair = [0, 0, 0, 2, 2, 2]
-    if die_list.__contains__(6):
+    if die_dict.__contains__(6):
         return 1500 + score, [0, 0, 0, 0, 0, 0]
     elif die_list.__contains__(4) and die_list.__contains__(2):
         return 1500 + score, [0, 0, 0, 0, 0, 0]
@@ -47,15 +49,14 @@ def is_three_pair(score, die_list):
 
 
 def is_set(score, die_list):
-    result_list = [0] * 6
-    if result_list.__contains__(3):
-        return check_combos((result_list.index(3)+1)*100 + score, list_index(die_list, result_list.index(3)))
+    if die_list.__contains__(3):
+        return check_combos((die_list.index(3)+1)*100 + score, list_index(die_list, die_list.index(3)))
     if result_list.__contains__(4):
-        return check_combos((result_list.index(4)+1)*100*2 + score, list_index(die_list, result_list.index(4)))
+        return check_combos((die_list.index(4)+1)*100*2 + score, list_index(die_list, die_list.index(4)))
     if result_list.__contains__(5):
-        return check_combos((result_list.index(5)+1)*100*3 + score, list_index(die_list, result_list.index(5)))
+        return check_combos((die_list.index(5)+1)*100*3 + score, list_index(die_list, die_list.index(5)))
     if result_list.__contains__(6):
-        return (result_list.index(6)+1)*100*4 + score, list_index(die_list, result_list.index(6))
+        return (die_list.index(6)+1)*100*4 + score, list_index(die_list, die_list.index(6))
 
 
 def is_ace(score, die_list):

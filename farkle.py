@@ -22,10 +22,17 @@ def check_combos(score, die_dict):
     #is_no_score()
 
 
+def histogram(die_dict):
+    ret_histogram = {}
+    for
+
+
 def list_index(die_dict, index):
-    ret_list = die_dict
-    #TODO: Figure out how to set dictionary value
-    ret_list[index] = 0
+    ret_list[6]
+    for value in list(die_dict.values()):
+        if value is not 0:
+            ret_list[value - 1] += 1
+    #ret_list[index] = 0  # I have no idea what I was trying to do with this...
     return ret_list
 
 

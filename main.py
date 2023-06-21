@@ -10,6 +10,7 @@ BACKGROUNDCOLOR = (0, 128, 0)
 
 # Global variables
 scoring_rule = []
+WIN_SCORE = 10000
 
 # Set up the window
 WINDOWWIDTH = 800
@@ -150,6 +151,12 @@ drawText('Press a key to roll first hand.', font, windowSurface, (WINDOWWIDTH /3
 pygame.display.update()
 waitForPlayerToPressKey()
 
+# Define what happens when selected dice are locked in
+# def score_selected_dice():
+#    for die in range(6):
+# TODO: Dice are selected. Figure out what to do about that.
+# TODO: First, write code that transfers image to the top row.  Then worry about scoring.
+
 
 # Define scoring options.  Return name of scoring rule and list of active dice.
 # def evaluate_scoring_options(current_hand, scoring_rule):
@@ -208,24 +215,60 @@ while True:
                 terminate()
         
             if event.type == KEYDOWN:
-                if event.type == K_1 and not players[0].current_hand[0].keep_die:
-                    players[0].current_hand[0].keep_die = True
-                    windowSurface.blit(players[0].current_hand[0].die_img_transformed, players[0].current_hand[0].die_rect)
-                if event.type == K_2 and not players[0].current_hand[1].keep_die:
-                    players[0].current_hand[1].keep_die = True
-                    windowSurface.blit(players[0].current_hand[1].die_img_transformed, players[0].current_hand[1].die_rect)
-                if event.type == K_3 and not players[0].current_hand[2].keep_die:
-                    players[0].current_hand[2].keep_die = True 
-                    windowSurface.blit(players[0].current_hand[2].die_img_transformed, players[0].current_hand[2].die_rect)
-                if event.type == K_4 and not players[0].current_hand[3].keep_die:
-                    players[0].current_hand[3].keep_die = True
-                    windowSurface.blit(players[0].current_hand[3].die_img_transformed, players[0].current_hand[3].die_rect)
-                if event.type == K_5 and not players[0].current_hand[4].keep_die:
-                    players[0].current_hand[4].keep_die = True
-                    windowSurface.blit(players[0].current_hand[4].die_img_transformed, players[0].current_hand[4].die_rect)
-                if event.type == K_6 and not players[0].current_hand[5].keep_die:
-                    players[0].current_hand[5].keep_die = True
-                    windowSurface.blit(players[0].current_hand[5].die_img_transformed, players[0].current_hand[5].die_rect)
+                if event.key == K_1:
+                    if players[0].current_hand[0].keep_die == False:
+                        players[0].current_hand[0].keep_die = True
+                        change_image_selected(players[0].current_hand[0], players[0].current_hand[0].current_value)
+                        windowSurface.blit(players[0].current_hand[0].die_img_transformed, players[0].current_hand[0].die_rect)
+                    elif players[0].current_hand[0].keep_die == True:
+                        players[0].current_hand[0].keep_die = False
+                        set_image_to_roll(players[0].current_hand[0], players[0].current_hand[0].current_value)
+                        windowSurface.blit(players[0].current_hand[0].die_img_transformed, players[0].current_hand[0].die_rect)                        
+                if event.key == K_2:
+                    if players[0].current_hand[1].keep_die == False:
+                        players[0].current_hand[1].keep_die = True
+                        change_image_selected(players[0].current_hand[1], players[0].current_hand[1].current_value)
+                        windowSurface.blit(players[0].current_hand[1].die_img_transformed, players[0].current_hand[1].die_rect)
+                    elif players[0].current_hand[1].keep_die == True:
+                        players[0].current_hand[1].keep_die = False
+                        set_image_to_roll(players[0].current_hand[1], players[0].current_hand[1].current_value)
+                        windowSurface.blit(players[0].current_hand[1].die_img_transformed, players[0].current_hand[1].die_rect)
+                if event.key == K_3:
+                    if players[0].current_hand[2].keep_die == False:
+                        players[0].current_hand[2].keep_die = True
+                        change_image_selected(players[0].current_hand[2], players[0].current_hand[2].current_value)
+                        windowSurface.blit(players[0].current_hand[2].die_img_transformed, players[0].current_hand[2].die_rect)
+                    elif players[0].current_hand[2].keep_die == True:
+                        players[0].current_hand[2].keep_die = False
+                        set_image_to_roll(players[0].current_hand[2], players[0].current_hand[2].current_value)
+                        windowSurface.blit(players[0].current_hand[2].die_img_transformed, players[0].current_hand[2].die_rect)
+                if event.key == K_4:
+                    if players[0].current_hand[3].keep_die == False:
+                        players[0].current_hand[3].keep_die = True
+                        change_image_selected(players[0].current_hand[3], players[0].current_hand[3].current_value)
+                        windowSurface.blit(players[0].current_hand[3].die_img_transformed, players[0].current_hand[3].die_rect)
+                    elif players[0].current_hand[3].keep_die == True:
+                        players[0].current_hand[3].keep_die = False
+                        set_image_to_roll(players[0].current_hand[3], players[0].current_hand[3].current_value)
+                        windowSurface.blit(players[0].current_hand[3].die_img_transformed, players[0].current_hand[3].die_rect)
+                if event.key == K_5:
+                    if players[0].current_hand[4].keep_die == False:
+                        players[0].current_hand[4].keep_die = True
+                        change_image_selected(players[0].current_hand[4], players[0].current_hand[4].current_value)
+                        windowSurface.blit(players[0].current_hand[4].die_img_transformed, players[0].current_hand[4].die_rect)
+                    elif players[0].current_hand[4].keep_die == True:
+                        players[0].current_hand[4].keep_die = False
+                        set_image_to_roll(players[0].current_hand[4], players[0].current_hand[4].current_value)
+                        windowSurface.blit(players[0].current_hand[4].die_img_transformed, players[0].current_hand[4].die_rect)
+                if event.key == K_6:
+                    if players[0].current_hand[5].keep_die == False:
+                        players[0].current_hand[5].keep_die = True
+                        change_image_selected(players[0].current_hand[5], players[0].current_hand[5].current_value)
+                        windowSurface.blit(players[0].current_hand[5].die_img_transformed, players[0].current_hand[5].die_rect)
+                    elif players[0].current_hand[5].keep_die == True:
+                        players[0].current_hand[5].keep_die = False
+                        set_image_to_roll(players[0].current_hand[5], players[0].current_hand[5].current_value)
+                        windowSurface.blit(players[0].current_hand[5].die_img_transformed, players[0].current_hand[5].die_rect)
                 
         # Draw a clear window
         windowSurface.fill(BACKGROUNDCOLOR)
@@ -240,10 +283,16 @@ while True:
 
         pygame.display.update()
 
+        # Check if player has crossed WIN_SCORE threshhold
+        if players[0].banked_points >= WIN_SCORE and IS_LAST_TURN == False:
+            IS_LAST_TURN = True
+        if players[0].banked_points >= WIN_SCORE and IS_LAST_TURN == True:
+            break
+
         mainClock.tick(FPS)
 
-        # Stop the game and show "Game Over" screen
-        drawText('GAME OVER', font, windowSurface, (WINDOWWIDTH / 3), (WINDOWHEIGHT / 3))
-        drawText('Press a key to play again.', font, windowSurface, (WINDOWWIDTH / 3) - 80, (WINDOWHEIGHT / 3) + 50)
-        pygame.display.update()
-        waitForPlayerToPressKey()
+    # Stop the game and show "Game Over" screen
+    drawText('GAME OVER', font, windowSurface, (WINDOWWIDTH / 3), (WINDOWHEIGHT / 3))
+    drawText('Press a key to play again.', font, windowSurface, (WINDOWWIDTH / 3) - 80, (WINDOWHEIGHT / 3) + 50)
+    pygame.display.update()
+    waitForPlayerToPressKey()
